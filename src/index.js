@@ -5,7 +5,7 @@ import { SvgLoader, SvgProxy } from "react-svgmt";
 import Carte from "./Carte";
 import { hasPetiteCouronne, normalizeDpt } from "./departements";
 
-const France = ({ color, highlightColor, departements }) => {
+const France = ({ greenColor, orangeColor, redColor, highlightColor, departements }) => {
   const dpts = [
     ...departements,
     ...(hasPetiteCouronne(departements) ? ["75-92-93-94"] : [])
@@ -13,7 +13,7 @@ const France = ({ color, highlightColor, departements }) => {
 
   return (
     <SvgLoader svgXML={Carte}>
-      <SvgProxy selector="#carte" fill={color} />
+      <SvgProxy selector="#carte" fill={greenColor} />
       {dpts.map(dpt => (
         <SvgProxy
           key={dpt}
@@ -26,13 +26,17 @@ const France = ({ color, highlightColor, departements }) => {
 };
 
 France.propTypes = {
-  color: PropTypes.string,
+  greenColor: PropTypes.string,
+  orangeColor: PropTypes.string,
+  redColor: PropTypes.string,
   departements: PropTypes.array,
   highlightColor: PropTypes.string
 };
 
 France.defaultProps = {
-  color: "#74B4FF",
+  greenColor: "#74B4FF",
+  orangeColor: "#FF8C00",
+  redColor: "#FF0000",
   highlightColor: "#b3ff75",
   departements: []
 };
